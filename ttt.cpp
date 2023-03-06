@@ -16,7 +16,7 @@ void switchPlayer() {
 uint8_t get_human_move(){
   int digit;
   while (true) {
-    cout << "Enter your move (1 - 9): ";
+    cout << "Enter your move (1 - 9): " << std::flush;
 	if ((cin >> digit) && digit > 0 && digit <= 9)
 	  break;
     cout << "Oops... must be a single digit between 1 and 9\n";

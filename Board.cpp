@@ -69,11 +69,14 @@ bool Board::tie() const {
 }
 
 uint8_t Board::getMachineMove(){
+    using std::random_device, std::mt19937, std::uniform_int_distribution;  
 	 // just gets a random move!
-    std::mt19937 rng(std::random_device{}());
-    std::uniform_int_distribution<int> dist(0, availablePositions.size() - 1);
-    auto it = std::next(availablePositions.begin(), dist(rng));
-    uint8_t move = *it;
+    random_device seedProvider;
+    mt19937 randomNumberGenerator(seedProvider());
+    uniform_int_distribution<size_t> dist(0, availablePositions.size() - 1);
+    auto it = availablePositions.begin();
+    std::advance(it, dist(randomNumberGenerator));
+    uint8_t move = *it; 
     removeAvailablePosition(move);
     return move;
 }
